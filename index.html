@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHOCO DARKHOUSE | คราฟต์ช็อกโกแลตแท่งแท้ 100%</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+  <nav class="bg-amber-950 text-amber-50 py-4 px-6 sticky top-0 z-50 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold tracking-wider">🍫 CHOCO DARKHOUSE</div>
+      <div class="space-x-4 text-sm">
+        <a href="#products" class="hover:text-amber-300">สินค้าของเรา</a>
+        <a href="#order-form" class="bg-amber-600 hover:bg-amber-500 px-4 py-2 rounded-full font-semibold transition">สั่งซื้อเลย</a>
+        <a href="admin.html" class="text-amber-300/70 hover:text-amber-200 text-xs underline">แอดมิน (แพ็คของ)</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-b from-amber-950 to-stone-900 text-white py-20 px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <span class="bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Single Origin Craft Chocolate</span>
+      <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">สัมผัสความเข้มข้นระดับพรีเมียม<br>ในทุกคำที่ละลายในปาก</h1>
+      <p class="text-stone-300 text-lg mb-8">คัดสรรเมล็ดโกโก้สายพันธุ์ดี ผ่านกระบวนการ Bean-to-Bar พิถีพิถันทุกขั้นตอน ส่งพร้อมเจลเก็บความเย็นฟรีทุกออเดอร์</p>
+      <a href="#order-form" class="inline-block bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-lg px-8 py-4 rounded-full shadow-lg transition transform hover:scale-105">
+        เลือกช็อกโกแลตของคุณ
+      </a>
+    </div>
+  </header>
+
+  <section id="products" class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-center text-amber-950 mb-12">เลือกความอร่อย 3 รสชาติซิกเนเจอร์</h2>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- SKU 1 -->
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-stone-200 flex flex-col">
+        <div class="h-64 bg-stone-200 relative overflow-hidden">
+          <img src="./choco-house%201.jpg" alt="75% Cacao Dark Chocolate" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 bg-stone-900 text-white text-xs px-3 py-1 rounded-full">SKU: CHOC-DK75</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-stone-900">1. 75% Cacao Dark & Sea Salt</h3>
+            <p class="text-stone-600 mt-2 text-sm">ดาร์กช็อกโกแลตเข้มข้น 75% โรยคาเคาบีนส์คั่วกรอบและเกลือสมุทร หวานน้อย กลมกล่อม</p>
+          </div>
+          <div class="mt-6 flex items-center justify-between border-t pt-4">
+            <span class="text-2xl font-bold text-amber-800">฿180</span>
+            <div class="flex items-center space-x-3">
+              <button type="button" onclick="updateQty('sku1', -1)" class="w-8 h-8 rounded-full bg-stone-200 font-bold hover:bg-stone-300">-</button>
+              <span id="sku1-display" class="font-bold text-lg w-6 text-center">0</span>
+              <button type="button" onclick="updateQty('sku1', 1)" class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold hover:bg-amber-700">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKU 2 -->
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-stone-200 flex flex-col">
+        <div class="h-64 bg-stone-200 relative overflow-hidden">
+          <img src="./choco-house%202.jpg" alt="Raspberry Pistachio Milk Chocolate" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 bg-rose-700 text-white text-xs px-3 py-1 rounded-full">SKU: CHOC-RP02</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-stone-900">2. Raspberry Pistachio Milk</h3>
+            <p class="text-stone-600 mt-2 text-sm">มิลค์ช็อกโกแลตเนื้อละมุน ตัดรสเปรี้ยวอมหวานของราสป์เบอร์รีฟรีซดรายและถั่วพิสตาชิโออบกรอบ</p>
+          </div>
+          <div class="mt-6 flex items-center justify-between border-t pt-4">
+            <span class="text-2xl font-bold text-amber-800">฿195</span>
+            <div class="flex items-center space-x-3">
+              <button type="button" onclick="updateQty('sku2', -1)" class="w-8 h-8 rounded-full bg-stone-200 font-bold hover:bg-stone-300">-</button>
+              <span id="sku2-display" class="font-bold text-lg w-6 text-center">0</span>
+              <button type="button" onclick="updateQty('sku2', 1)" class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold hover:bg-amber-700">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKU 3 -->
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-stone-200 flex flex-col">
+        <div class="h-64 bg-stone-200 relative overflow-hidden">
+          <img src="./choco-house%203.jpg" alt="Salted Caramel Hazelnut Chocolate" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 bg-amber-700 text-white text-xs px-3 py-1 rounded-full">SKU: CHOC-CH03</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-stone-900">3. Salted Caramel Hazelnut</h3>
+            <p class="text-stone-600 mt-2 text-sm">ช็อกโกแลตสอดไส้ซอลท์เท็ดคาราเมลเยิ้มๆ ผสานเฮเซลนัทคั่วเต็มเมล็ด หอมมันทุกคำ</p>
+          </div>
+          <div class="mt-6 flex items-center justify-between border-t pt-4">
+            <span class="text-2xl font-bold text-amber-800">฿210</span>
+            <div class="flex items-center space-x-3">
+              <button type="button" onclick="updateQty('sku3', -1)" class="w-8 h-8 rounded-full bg-stone-200 font-bold hover:bg-stone-300">-</button>
+              <span id="sku3-display" class="font-bold text-lg w-6 text-center">0</span>
+              <button type="button" onclick="updateQty('sku3', 1)" class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold hover:bg-amber-700">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order-form" class="bg-amber-50 py-16 px-6 border-t border-amber-200">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+      <h2 class="text-2xl font-bold text-amber-950 mb-6 text-center">สรุปรายการและกรอกที่อยู่จัดส่ง</h2>
+      
+      <div class="bg-stone-100 p-4 rounded-xl mb-6 space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span>1. 75% Cacao Dark & Sea Salt (฿180)</span>
+          <span id="summary-sku1" class="font-semibold">0 แท่ง</span>
+        </div>
+        <div class="flex justify-between">
+          <span>2. Raspberry Pistachio Milk (฿195)</span>
+          <span id="summary-sku2" class="font-semibold">0 แท่ง</span>
+        </div>
+        <div class="flex justify-between">
+          <span>3. Salted Caramel Hazelnut (฿210)</span>
+          <span id="summary-sku3" class="font-semibold">0 แท่ง</span>
+        </div>
+        <div class="flex justify-between text-stone-500">
+          <span>ค่าจัดส่ง (แพ็คเจลเก็บความเย็นฟรี)</span>
+          <span>ฟรี (฿0)</span>
+        </div>
+        <div class="border-t border-stone-300 pt-2 flex justify-between text-lg font-bold text-amber-900">
+          <span>ยอดชำระทั้งหมด</span>
+          <span id="summary-total">฿0</span>
+        </div>
+      </div>
+
+      <form id="checkoutForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1">ชื่อ-นามสกุล ผู้รับ *</label>
+          <input type="text" id="custName" required placeholder="เช่น สมชาย ใจดี" class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-amber-600">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">เบอร์โทรศัพท์ติดต่อ *</label>
+          <input type="tel" id="custPhone" required placeholder="เช่น 0812345678" class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-amber-600">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">ที่อยู่จัดส่ง (บ้านเลขที่, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์) *</label>
+          <textarea id="custAddress" required rows="3" placeholder="กรอกที่อยู่ให้ครบถ้วนเพื่อความรวดเร็วในการจัดส่ง" class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:border-amber-600"></textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">วิธีชำระเงิน</label>
+          <select id="paymentMethod" class="w-full border border-stone-300 rounded-lg px-4 py-2.5 bg-white">
+            <option value="COD (เก็บเงินปลายทาง)">เก็บเงินปลายทาง (COD)</option>
+            <option value="โอนชำระผ่านธนาคาร">โอนชำระผ่านบัญชีธนาคาร</option>
+          </select>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full bg-amber-800 hover:bg-amber-900 text-white font-bold py-3.5 rounded-xl shadow-md transition text-lg mt-4">
+          ยืนยันการสั่งซื้อ
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-stone-900 text-stone-400 text-center py-6 text-sm">
+    © 2026 CHOCO DARKHOUSE Craft Chocolate. All rights reserved.
+  </footer>
+
+  <script>
+    const CONFIG = {
+      SCRIPT_URL: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+      PRICES: { sku1: 180, sku2: 195, sku3: 210 }
+    };
+
+    let cart = { sku1: 0, sku2: 0, sku3: 0 };
+
+    function updateQty(sku, change) {
+      if (cart[sku] + change >= 0) {
+        cart[sku] += change;
+        renderCart();
+      }
+    }
+
+    function renderCart() {
+      document.getElementById('sku1-display').innerText = cart.sku1;
+      document.getElementById('sku2-display').innerText = cart.sku2;
+      document.getElementById('sku3-display').innerText = cart.sku3;
+      document.getElementById('summary-sku1').innerText = `${cart.sku1} แท่ง`;
+      document.getElementById('summary-sku2').innerText = `${cart.sku2} แท่ง`;
+      document.getElementById('summary-sku3').innerText = `${cart.sku3} แท่ง`;
+      
+      const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
+      document.getElementById('summary-total').innerText = `฿${total.toLocaleString()}`;
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
+      
+      if (total === 0) {
+        alert('กรุณาเลือกสินค้าอย่างน้อย 1 แท่งก่อนทำการสั่งซื้อครับ');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerText = 'กำลังบันทึกคำสั่งซื้อ...';
+
+      const payload = {
+        name: document.getElementById('custName').value.trim(),
+        phone: document.getElementById('custPhone').value.trim(),
+        address: document.getElementById('custAddress').value.trim(),
+        sku1: cart.sku1,
+        sku2: cart.sku2,
+        sku3: cart.sku3,
+        total: total,
+        payment: document.getElementById('paymentMethod').value
+      };
+
+      try {
+        const response = await fetch(CONFIG.SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+          alert(`สั่งซื้อสำเร็จ!\nรหัสคำสั่งซื้อของคุณคือ: ${result.orderId}\nทางร้านกำลังเตรียมจัดส่งสินค้าให้คุณครับ`);
+          document.getElementById('checkoutForm').reset();
+          cart = { sku1: 0, sku2: 0, sku3: 0 };
+          renderCart();
+        } else {
+          alert('เกิดข้อผิดพลาด: ' + result.message);
+        }
+      } catch (error) {
+        alert('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
+        console.error(error);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'ยืนยันการสั่งซื้อ';
+      }
+    });
+  </script>
+</body>
+</html>
