@@ -166,79 +166,81 @@
   </footer>
 
   <script>
-    const CONFIG = {
-SCRIPT_URL: '[https://script.google.com/macros/s/AKfycbxc_85bkP7LSwDr940veQeK_rnn3GnqFzty2j4cH2BN0bBszwSdJ2mhGfYsgr_VhaAH/exec)',
-      PRICES: { sku1: 180, sku2: 195, sku3: 210 }
+<script>
+  const CONFIG = {
+    SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxc_85bkP7LSwDr940veQeK_rnn3GnqFzty2j4cH2BN0bBszwSdJ2mhGfYsgr_VhaAH/exec',
+    PRICES: { sku1: 180, sku2: 195, sku3: 210 }
+  };
+
+  let cart = { sku1: 0, sku2: 0, sku3: 0 };
+
+  function updateQty(sku, change) {
+    if (cart[sku] + change >= 0) {
+      cart[sku] += change;
+      renderCart();
+    }
+  }
+
+  function renderCart() {
+    document.getElementById('sku1-display').innerText = cart.sku1;
+    document.getElementById('sku2-display').innerText = cart.sku2;
+    document.getElementById('sku3-display').innerText = cart.sku3;
+    document.getElementById('summary-sku1').innerText = `${cart.sku1} แท่ง`;
+    document.getElementById('summary-sku2').innerText = `${cart.sku2} แท่ง`;
+    document.getElementById('summary-sku3').innerText = `${cart.sku3} แท่ง`;
+
+    const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
+    document.getElementById('summary-total').innerText = `฿${total.toLocaleString()}`;
+  }
+
+  document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
+
+    if (total === 0) {
+      alert('กรุณาเลือกสินค้าอย่างน้อย 1 แท่งก่อนทำการสั่งซื้อครับ');
+      return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerText;
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'กำลังบันทึกคำสั่งซื้อ...';
+
+    const orderData = {
+      Customer_Name: document.getElementById('customerName').value.trim(),
+      Phone: document.getElementById('customerPhone').value.trim(),
+      Address: document.getElementById('customerAddress').value.trim(),
+      SKU1_Qty: cart.sku1,
+      SKU2_Qty: cart.sku2,
+      SKU3_Qty: cart.sku3,
+      Total_Price: total,
+      Payment_Method: document.getElementById('paymentMethod').value
     };
 
-    let cart = { sku1: 0, sku2: 0, sku3: 0 };
+    try {
+      const response = await fetch(CONFIG.SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(orderData)
+      });
 
-    function updateQty(sku, change) {
-      if (cart[sku] + change >= 0) {
-        cart[sku] += change;
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        alert(`สั่งซื้อสำเร็จ! รหัสคำสั่งซื้อของคุณคือ: ${result.orderId}`);
+        cart = { sku1: 0, sku2: 0, sku3: 0 };
         renderCart();
+        e.target.reset();
+      } else {
+        alert('เกิดข้อผิดพลาดจากระบบ: ' + (result.message || 'ไม่ทราบสาเหตุ'));
       }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalText;
     }
-
-    function renderCart() {
-      document.getElementById('sku1-display').innerText = cart.sku1;
-      document.getElementById('sku2-display').innerText = cart.sku2;
-      document.getElementById('sku3-display').innerText = cart.sku3;
-      document.getElementById('summary-sku1').innerText = `${cart.sku1} แท่ง`;
-      document.getElementById('summary-sku2').innerText = `${cart.sku2} แท่ง`;
-      document.getElementById('summary-sku3').innerText = `${cart.sku3} แท่ง`;
-      
-      const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
-      document.getElementById('summary-total').innerText = `฿${total.toLocaleString()}`;
-    }
-
-    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const total = (cart.sku1 * CONFIG.PRICES.sku1) + (cart.sku2 * CONFIG.PRICES.sku2) + (cart.sku3 * CONFIG.PRICES.sku3);
-      
-      if (total === 0) {
-        alert('กรุณาเลือกสินค้าอย่างน้อย 1 แท่งก่อนทำการสั่งซื้อครับ');
-        return;
-      }
-
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerText = 'กำลังบันทึกคำสั่งซื้อ...';
-
-      const payload = {
-        name: document.getElementById('custName').value.trim(),
-        phone: document.getElementById('custPhone').value.trim(),
-        address: document.getElementById('custAddress').value.trim(),
-        sku1: cart.sku1,
-        sku2: cart.sku2,
-        sku3: cart.sku3,
-        total: total,
-        payment: document.getElementById('paymentMethod').value
-      };
-
-      try {
-        const response = await fetch(CONFIG.SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-        
-        if (result.status === 'success') {
-          alert(`สั่งซื้อสำเร็จ!\nรหัสคำสั่งซื้อของคุณคือ: ${result.orderId}\nทางร้านกำลังเตรียมจัดส่งสินค้าให้คุณครับ`);
-          document.getElementById('checkoutForm').reset();
-          cart = { sku1: 0, sku2: 0, sku3: 0 };
-          renderCart();
-        } else {
-          alert('เกิดข้อผิดพลาด: ' + result.message);
-        }
-      } catch (error) {
-        alert('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
-        console.error(error);
-      } finally {
-        btn.disabled = false;
-        btn.innerText = 'ยืนยันการสั่งซื้อ';
-      }
-    });
-  </script>
-</body>
-</html>
+  });
+</script>
